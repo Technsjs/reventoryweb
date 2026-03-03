@@ -245,7 +245,7 @@ export default function AnalyticsPage() {
         <div className="flex flex-col gap-6 md:gap-8 pb-12">
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Insights & Analytics</h1>
                     <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
@@ -254,13 +254,13 @@ export default function AnalyticsPage() {
                     </p>
                 </div>
 
-                <div className="flex items-center bg-secondary p-1 rounded-xl border border-border">
+                <div className="flex items-center bg-secondary p-1 rounded-xl border border-border w-full md:w-auto overflow-x-auto no-scrollbar">
                     {['24h', '7d', '30d', '6m', 'all'].map(range => (
                         <button
                             key={range}
                             onClick={() => setDateRange(range as any)}
                             className={cn(
-                                "px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all",
+                                "px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all flex-1 md:flex-none whitespace-nowrap",
                                 dateRange === range ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-foreground"
                             )}
                         >
@@ -271,7 +271,7 @@ export default function AnalyticsPage() {
             </div>
 
             {/* METRICS GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                 <MetricCard label="Total Revenue" value={formatCurrency(metrics.rev, company?.currency)} icon={Wallet} trend="Total earnings" />
                 <MetricCard label="Net Profit" value={formatCurrency(metrics.prof, company?.currency)} icon={TrendingUp} trend="Actual earnings" />
                 <MetricCard label="Profit Margin" value={`${metrics.margin.toFixed(1)}%`} icon={Percent} trend="Overall health" />
@@ -297,7 +297,7 @@ export default function AnalyticsPage() {
                         </div>
                     </div>
 
-                    <div className="bg-card border border-border rounded-[2.5rem] p-6 md:p-8 shadow-sm">
+                    <div className="bg-card border border-border rounded-2xl md:rounded-[2.5rem] p-4 md:p-8 shadow-sm">
                         <div className="h-[350px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
                                 <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -411,17 +411,17 @@ export default function AnalyticsPage() {
 
 function MetricCard({ label, value, icon: Icon, trend }: any) {
     return (
-        <div className="bg-card p-6 rounded-[2rem] border border-border shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+        <div className="bg-card p-4 md:p-6 rounded-2xl md:rounded-[2rem] border border-border shadow-sm hover:shadow-md transition-all group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity hidden sm:block">
                 <Icon className="w-12 h-12" />
             </div>
-            <div className="relative space-y-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-sm">
-                    <Icon className="w-5 h-5" />
+            <div className="relative space-y-3 md:space-y-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-sm">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5" />
                 </div>
                 <div>
-                    <p className="text-xs font-semibold text-muted-foreground">{label}</p>
-                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-1">{value}</h3>
+                    <p className="text-[10px] md:text-xs font-semibold text-muted-foreground">{label}</p>
+                    <h3 className="text-lg md:text-2xl font-bold tracking-tight text-foreground mt-0.5 md:mt-1">{value}</h3>
                 </div>
                 {trend && (
                     <div className="flex items-center gap-1 uppercase tracking-tighter">

@@ -88,7 +88,7 @@ export default function InventoryPage() {
         <div className="flex flex-col gap-6 md:gap-8 pb-20">
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Inventory</h1>
                     <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
@@ -97,14 +97,14 @@ export default function InventoryPage() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
-                    <div className="flex items-center bg-secondary p-1 rounded-xl border border-border">
-                        <button onClick={() => setView('table')} className={cn("p-2 rounded-lg transition-all", view === 'table' ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-foreground")}><List className="w-4 h-4" /></button>
-                        <button onClick={() => setView('grid')} className={cn("p-2 rounded-lg transition-all", view === 'grid' ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-foreground")}><LayoutGrid className="w-4 h-4" /></button>
+                <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                    <div className="flex items-center bg-secondary p-1 rounded-xl border border-border w-full sm:w-auto justify-between sm:justify-start">
+                        <button onClick={() => setView('table')} className={cn("flex-1 sm:flex-none p-2 rounded-lg transition-all flex justify-center", view === 'table' ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-foreground")}><List className="w-4 h-4" /></button>
+                        <button onClick={() => setView('grid')} className={cn("flex-1 sm:flex-none p-2 rounded-lg transition-all flex justify-center", view === 'grid' ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-foreground")}><LayoutGrid className="w-4 h-4" /></button>
                     </div>
                     <button
                         onClick={() => setShowAddDialog(true)}
-                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all hover:bg-emerald-700 shadow-sm hover:shadow-emerald-100"
+                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:bg-emerald-700 shadow-sm w-full sm:w-auto shrink-0"
                     >
                         <Plus className="w-4 h-4" />
                         Add Product
@@ -113,7 +113,7 @@ export default function InventoryPage() {
             </div>
 
             {/* KPI GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                 <KPICard label="Purchase Valuation" value={formatCurrency(stats.valuation, company?.currency)} icon={TrendingUp} trend="Capital in stock" />
                 <KPICard label="Potential Profit" value={formatCurrency(stats.potentialProfit, company?.currency)} icon={Gem} trend="Projected earnings" />
                 <KPICard label="Low Stock Items" value={stats.lowStock.toString()} icon={AlertTriangle} alert={stats.lowStock > 0} trend={stats.lowStock > 0 ? "Restock suggested" : "Stocks healthy"} />
@@ -218,31 +218,31 @@ export default function InventoryPage() {
                         </table>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-muted/10">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 p-3 md:p-6 bg-muted/10">
                         {filteredProducts.map(p => (
-                            <div key={p.id} className="bg-card p-5 rounded-2xl border border-border hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all group relative overflow-hidden">
+                            <div key={p.id} className="bg-card p-4 md:p-5 rounded-xl md:rounded-2xl border border-border hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all group relative overflow-hidden">
                                 <div className="absolute top-0 right-0 p-3 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button className="p-1.5 bg-emerald-50 text-emerald-600 rounded-lg"><Edit3 className="w-3.5 h-3.5" /></button>
                                 </div>
-                                <div className="space-y-4">
-                                    <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg">
+                                <div className="space-y-3 md:space-y-4">
+                                    <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-50 text-emerald-600 rounded-xl md:rounded-2xl flex items-center justify-center font-bold text-base md:text-lg">
                                         {p.name.charAt(0)}
                                     </div>
                                     <div>
-                                        <h4 className="text-sm font-bold text-foreground line-clamp-1">{p.name}</h4>
-                                        <div className="flex items-center gap-2 mt-1">
-                                            <span className="text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest">{p.categoryId === 'General' || !p.categoryId ? 'General' : (categoryMap[p.categoryId] || p.categoryId)}</span>
-                                            <span className="w-1 h-1 rounded-full bg-border" />
-                                            <span className="text-[10px] font-medium text-muted-foreground/40 font-mono">SKU: {p.sku || '---'}</span>
+                                        <h4 className="text-xs md:text-sm font-bold text-foreground line-clamp-1">{p.name}</h4>
+                                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mt-1">
+                                            <span className="text-[9px] md:text-[10px] font-bold text-muted-foreground/60 uppercase tracking-widest">{p.categoryId === 'General' || !p.categoryId ? 'General' : (categoryMap[p.categoryId] || p.categoryId)}</span>
+                                            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
+                                            <span className="text-[9px] md:text-[10px] font-medium text-muted-foreground/40 font-mono">SKU: {p.sku || '---'}</span>
                                         </div>
                                     </div>
-                                    <div className="pt-4 border-t border-border/50 flex items-end justify-between">
+                                    <div className="pt-3 md:pt-4 border-t border-border/50 flex items-end justify-between">
                                         <div className="space-y-1">
-                                            <p className="text-base font-bold text-foreground">{formatCurrency(p.price, company?.currency)}</p>
-                                            <p className={cn("text-[10px] font-bold uppercase", p.quantity === 0 ? "text-red-500" : (p.quantity <= (p.lowStockAlert || 5) ? "text-orange-500" : "text-emerald-600/70"))}>{p.quantity} In Stock</p>
+                                            <p className="text-sm md:text-base font-bold text-foreground">{formatCurrency(p.price, company?.currency)}</p>
+                                            <p className={cn("text-[9px] md:text-[10px] font-bold uppercase", p.quantity === 0 ? "text-red-500" : (p.quantity <= (p.lowStockAlert || 5) ? "text-orange-500" : "text-emerald-600/70"))}>{p.quantity} In Stock</p>
                                         </div>
-                                        <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground/30 group-hover:bg-emerald-600 group-hover:text-white transition-all">
-                                            <ArrowUpRight className="w-4 h-4" />
+                                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-secondary flex items-center justify-center text-muted-foreground/30 group-hover:bg-emerald-600 group-hover:text-white transition-all shrink-0">
+                                            <ArrowUpRight className="w-3.5 h-3.5 md:w-4 h-4" />
                                         </div>
                                     </div>
                                 </div>
@@ -263,21 +263,21 @@ export default function InventoryPage() {
 
 function KPICard({ label, value, icon: Icon, alert, trend }: any) {
     return (
-        <div className="bg-card p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+        <div className="bg-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50/50 rounded-full blur-2xl group-hover:bg-emerald-100/50 transition-colors" />
-            <div className="relative space-y-4">
+            <div className="relative space-y-3 md:space-y-4">
                 <div className="flex items-center justify-between">
-                    <div className={cn("w-10 h-10 rounded-2xl flex items-center justify-center transition-colors shadow-sm", alert ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600")}>
-                        <Icon className="w-5 h-5" />
+                    <div className={cn("w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-2xl flex items-center justify-center transition-colors shadow-sm", alert ? "bg-red-50 text-red-600" : "bg-emerald-50 text-emerald-600")}>
+                        <Icon className="w-4 h-4 md:w-5 md:h-5" />
                     </div>
-                    {alert && <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-red-50 text-red-600 text-[10px] font-bold animate-pulse">Critical</div>}
+                    {alert && <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-red-50 text-red-600 text-[9px] md:text-[10px] font-bold animate-pulse">Critical</div>}
                 </div>
                 <div>
-                    <p className="text-xs font-semibold text-muted-foreground">{label}</p>
-                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-1">{value}</h3>
+                    <p className="text-[10px] md:text-xs font-semibold text-muted-foreground">{label}</p>
+                    <h3 className="text-lg md:text-2xl font-bold tracking-tight text-foreground mt-0.5 md:mt-1">{value}</h3>
                 </div>
                 {trend && (
-                    <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest pt-2 flex items-center gap-1 underline decoration-emerald-100 underline-offset-4">
+                    <p className="text-[9px] md:text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest pt-1 md:pt-2 flex items-center gap-1 underline decoration-emerald-100 underline-offset-4">
                         {trend}
                     </p>
                 )}

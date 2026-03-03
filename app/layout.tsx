@@ -13,12 +13,12 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Reventory - Smart Inventory Management for Nigerian Shop Owners",
-  description: "Replace notebooks and WhatsApp with Reventory. Track inventory, manage sales, monitor profits, and hold workers accountable. Free to start, perfect for Nigerian businesses.",
-  keywords: "inventory management, sales tracking, Nigeria, shop management, worker management, stock tracking, business analytics",
+  title: "Reventory - Smart Inventory & Sales Management for Small Shops",
+  description: "Replace notebooks with Reventory. Track inventory, record sales, manage staff, and grow your business from one clean app. Free to start.",
+  keywords: "inventory management, sales tracking, shop management, staff management, stock tracking, business analytics, small business",
   openGraph: {
-    title: "Reventory - Smart Inventory Management",
-    description: "The smarter way to manage your shop's inventory and sales",
+    title: "Reventory - Smart Shop Management",
+    description: "The smarter way to manage your shop's inventory, sales, and team.",
     type: "website",
   },
 };

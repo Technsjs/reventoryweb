@@ -69,7 +69,7 @@ export default function StaffPage() {
         <div className="flex flex-col gap-6 md:gap-8 pb-20">
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Staff Members</h1>
                     <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
@@ -78,11 +78,11 @@ export default function StaffPage() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full md:w-auto">
                     <button
                         onClick={() => setShowAddDialog(true)}
                         disabled={workers.length >= staffLimit}
-                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all hover:bg-emerald-700 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:bg-emerald-700 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed w-full md:w-auto"
                     >
                         <Plus className="w-4 h-4" />
                         Add Staff
@@ -91,7 +91,7 @@ export default function StaffPage() {
             </div>
 
             {/* KPI GRID */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                 <KPICard label="Active Members" value={workers.filter(w => w.isActive).length.toString()} icon={Activity} trend="Online now" />
                 <KPICard label="Staff Capacity" value={`${workers.length} / ${staffLimit}`} icon={Layers} trend="Total slots" />
                 <KPICard label="Access Level" value="Manager" icon={ShieldCheck} trend="Account root" />
@@ -249,20 +249,20 @@ export default function StaffPage() {
 
 function KPICard({ label, value, icon: Icon, trend }: any) {
     return (
-        <div className="bg-card p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+        <div className="bg-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50/30 rounded-full blur-2xl group-hover:bg-emerald-100/30 transition-colors" />
-            <div className="relative space-y-4">
+            <div className="relative space-y-3 md:space-y-4">
                 <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center transition-colors shadow-sm">
-                        <Icon className="w-5 h-5" />
+                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center transition-colors shadow-sm">
+                        <Icon className="w-4 h-4 md:w-5 md:h-5" />
                     </div>
                 </div>
                 <div>
-                    <p className="text-xs font-semibold text-muted-foreground">{label}</p>
-                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-1">{value}</h3>
+                    <p className="text-[10px] md:text-xs font-semibold text-muted-foreground">{label}</p>
+                    <h3 className="text-lg md:text-2xl font-bold tracking-tight text-foreground mt-0.5 md:mt-1">{value}</h3>
                 </div>
                 {trend && (
-                    <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest underline decoration-emerald-100 underline-offset-4">
+                    <p className="text-[9px] md:text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest underline decoration-emerald-100 underline-offset-4">
                         {trend}
                     </p>
                 )}

@@ -53,7 +53,7 @@ export default function SettingsPage() {
         <div className="flex flex-col gap-6 md:gap-10 pb-20">
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">General Settings</h1>
                     <p className="text-sm font-medium text-muted-foreground flex items-center gap-2">
@@ -62,10 +62,10 @@ export default function SettingsPage() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 w-full md:w-auto">
                     <button
                         onClick={() => confirm('Log out of secure session?') && signOut()}
-                        className="bg-destructive/10 text-destructive px-5 py-2.5 rounded-xl text-xs font-bold border border-destructive/20 flex items-center gap-2 transition-all hover:bg-destructive/20"
+                        className="bg-destructive/10 text-destructive px-5 py-2.5 rounded-xl text-xs font-bold border border-destructive/20 flex items-center justify-center gap-2 transition-all hover:bg-destructive/20 w-full md:w-auto"
                     >
                         <LogOut className="w-4 h-4" />
                         Logout
@@ -79,19 +79,19 @@ export default function SettingsPage() {
                 <div className="lg:col-span-8 space-y-8">
 
                     {/* PLAN OVERVIEW */}
-                    <div className="bg-emerald-900 text-white rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden group shadow-xl shadow-emerald-900/10">
+                    <div className="bg-emerald-900 text-white rounded-2xl md:rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden group shadow-xl shadow-emerald-900/10">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-800 rounded-full blur-3xl -mr-32 -mt-32 opacity-50 transition-colors" />
-                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
-                            <div className="flex items-center gap-6">
-                                <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 shadow-lg backdrop-blur-sm">
-                                    <Zap className="w-6 h-6 text-emerald-300 fill-emerald-300" />
+                        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8">
+                            <div className="flex items-center gap-4 md:gap-6">
+                                <div className="w-10 h-10 md:w-14 md:h-14 bg-white/10 rounded-xl md:rounded-2xl flex items-center justify-center border border-white/10 shadow-lg backdrop-blur-sm">
+                                    <Zap className="w-5 h-5 md:w-6 md:h-6 text-emerald-300 fill-emerald-300" />
                                 </div>
                                 <div className="space-y-0.5">
-                                    <h3 className="text-2xl font-bold tracking-tight capitalize">{company?.subscriptionPlan} Plan</h3>
-                                    <p className="text-xs font-semibold text-emerald-100/60 uppercase tracking-widest">Active </p>
+                                    <h3 className="text-lg md:text-2xl font-bold tracking-tight capitalize">{company?.subscriptionPlan} Plan</h3>
+                                    <p className="text-[10px] font-semibold text-emerald-100/60 uppercase tracking-widest">Active </p>
                                 </div>
                             </div>
-                            <button className="px-6 py-2.5 bg-white text-emerald-900 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-emerald-50 transition-colors shadow-lg shadow-black/10">Manage Subscription</button>
+                            <button className="w-full md:w-auto px-6 py-2.5 bg-white text-emerald-900 rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-emerald-50 transition-colors shadow-lg shadow-black/10">Manage Subscription</button>
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@ export default function SettingsPage() {
                                 <Building2 className="w-3.5 h-3.5" />
                                 Company Info
                             </h3>
-                            <div className="bg-card border border-border rounded-[2rem] overflow-hidden shadow-sm">
+                            <div className="bg-card border border-border rounded-2xl md:rounded-[2rem] overflow-hidden shadow-sm">
                                 <EditableItem
                                     label="Brand Identity"
                                     value={company?.name || ''}
@@ -123,8 +123,8 @@ export default function SettingsPage() {
                                     tempValue={tempIndustry}
                                     setTempValue={setTempIndustry}
                                 />
-                                <div className="p-6 flex items-center justify-between group hover:bg-muted/30 transition-colors border-t border-border/50">
-                                    <div className="flex items-center gap-5">
+                                <div className="p-4 md:p-6 flex items-center justify-between group hover:bg-muted/30 transition-colors border-t border-border/50">
+                                    <div className="flex items-center gap-4 md:gap-5">
                                         <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center border border-primary/20 opacity-60"><Globe className="w-3.5 h-3.5" /></div>
                                         <div className="space-y-0.5">
                                             <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest">Select Currency</p>
@@ -149,7 +149,7 @@ export default function SettingsPage() {
                                 <Shield className="w-3.5 h-3.5" />
                                 Security
                             </h3>
-                            <div className="bg-card border border-border rounded-[2rem] overflow-hidden shadow-sm">
+                            <div className="bg-card border border-border rounded-2xl md:rounded-[2rem] overflow-hidden shadow-sm">
                                 <StaticItem label="Owner Email" value={company?.email || ''} icon={<Mail className="w-4 h-4" />} />
                                 <StaticItem label="Encryption Status" value="Secure RSA-4096" icon={<Fingerprint className="w-4 h-4" />} />
                                 <StaticItem label="System Version" value="v3.2 Stable" icon={<Info className="w-4 h-4" />} />
@@ -210,7 +210,7 @@ function TermItem({ label, desc }: { label: string, desc: string }) {
 
 function EditableItem({ label, value, icon, isEditing, setIsEditing, tempValue, setTempValue, onSave }: any) {
     return (
-        <div className="p-6 bg-card flex items-center justify-between group transition-all hover:bg-muted/30 border-b border-border/50 last:border-0">
+        <div className="p-4 md:p-6 bg-card flex items-center justify-between group transition-all hover:bg-muted/30 border-b border-border/50 last:border-0">
             <div className="flex items-center gap-5 flex-1">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center border border-primary/20 opacity-60 group-hover:opacity-100 transition-all">{icon}</div>
                 <div className="flex-1 space-y-0.5">
@@ -240,7 +240,7 @@ function EditableItem({ label, value, icon, isEditing, setIsEditing, tempValue, 
 
 function StaticItem({ label, value, icon }: any) {
     return (
-        <div className="p-6 bg-card flex items-center justify-between group hover:bg-muted/30 transition-colors border-b border-border/50 last:border-0">
+        <div className="p-4 md:p-6 bg-card flex items-center justify-between group hover:bg-muted/30 transition-colors border-b border-border/50 last:border-0">
             <div className="flex items-center gap-5">
                 <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center border border-primary/20 opacity-60 group-hover:opacity-100 transition-all">{icon}</div>
                 <div className="space-y-0.5">
@@ -272,7 +272,7 @@ function CollectionsManager({ companyRefId }: { companyRefId?: string }) {
     };
 
     return (
-        <div className="bg-card border border-border rounded-[2.5rem] p-8 space-y-10 shadow-sm">
+        <div className="bg-card border border-border rounded-2xl md:rounded-[2.5rem] p-6 md:p-8 space-y-10 shadow-sm">
             <section className="space-y-6">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-muted-foreground/60 flex items-center gap-2 px-1">
                     <Tag className="w-3.5 h-3.5 text-emerald-500/40" /> Brands

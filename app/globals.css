@@ -11,25 +11,30 @@
 }
 
 @layer base {
+
+  /* Light Mode Only - Focus on high contrast */
   :root {
-    --background: #F8FAFC;
-    --foreground: #0F172A;
+    --background: #FFFFFF;
+    --foreground: #020617;
     --card: #FFFFFF;
-    --card-foreground: #0F172A;
+    --card-foreground: #020617;
     --popover: #ffffff;
-    --popover-foreground: #0F172A;
-    --primary: #059669;
+    --popover-foreground: #020617;
+    --primary: #4466B9;
     --primary-foreground: #ffffff;
-    --secondary: #F1F5F9;
-    --secondary-foreground: #1E293B;
+    --secondary: #F8FAFC;
+    --secondary-foreground: #0F172A;
     --muted: #F1F5F9;
     --muted-foreground: #64748B;
-    --accent: #ECFDF5;
-    --accent-foreground: #059669;
+    --accent: #EEF2FF;
+    --accent-foreground: #4466B9;
     --destructive: #ef4444;
     --destructive-foreground: #fafafa;
     --border: #E2E8F0;
-    --ring: #10B981;
+    --ring: #4466B9;
+
+    /* Specific LAB color requested */
+    --price-bg: lab(7.78673% 1.82345 -15.0537);
 
     /* Tailwind 4 automatic theme mapping */
     --color-background: var(--background);
@@ -52,26 +57,11 @@
     --color-ring: var(--ring);
 
     /* Brand Accents */
-    --color-brand-green: #059669;
-    --color-brand-green-light: #ECFDF5;
+    --color-brand-blue: #4466B9;
+    --color-brand-blue-light: #EEF2FF;
     --color-brand-amber: #f59e0b;
-  }
-
-  .dark {
-    --background: #09090b;
-    --foreground: #fafafa;
-    --card: #111114;
-    --card-foreground: #fafafa;
-    --popover: #09090b;
-    --popover-foreground: #fafafa;
-    --secondary: #18181b;
-    --secondary-foreground: #fafafa;
-    --muted: #18181b;
-    --muted-foreground: #a1a1aa;
-    --accent: #18181b;
-    --accent-foreground: #fafafa;
-    --border: #27272a;
-    --ring: #6366f1;
+    /* Used for shadow utilities */
+    --primary-rgb: 68, 102, 185;
   }
 
   * {
@@ -131,24 +121,17 @@
 
 /* Premium Layout Utilities */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.dark .glass {
-  background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, #6366f1, #818cf8, #a855f7);
+  background-image: linear-gradient(135deg, #4466B9, #6688CC);
 }
 
 .bento-card {

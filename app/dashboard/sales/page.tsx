@@ -152,7 +152,7 @@ export default function SalesPage() {
         <div className="flex flex-col gap-6 md:gap-8 pb-20">
 
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Sales History</h1>
                     <p className="text-sm text-muted-foreground font-medium flex items-center gap-2">
@@ -161,7 +161,7 @@ export default function SalesPage() {
                     </p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
                     {branches.length > 0 && (
                         <div className="hidden lg:flex items-center bg-secondary p-1 rounded-xl border border-border">
                             <div className="p-2 text-muted-foreground opacity-40"><Store className="w-4 h-4" /></div>
@@ -181,7 +181,7 @@ export default function SalesPage() {
                     )}
                     <button
                         onClick={() => setShowCreateSale(true)}
-                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all hover:bg-emerald-700 shadow-sm"
+                        className="bg-emerald-600 text-white px-5 py-2.5 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:bg-emerald-700 shadow-sm w-full sm:w-auto shrink-0"
                     >
                         <Plus className="w-4 h-4" />
                         Add Sale
@@ -190,15 +190,15 @@ export default function SalesPage() {
             </div>
 
             {/* STATS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="lg:col-span-2 bg-emerald-900 text-white p-8 rounded-[2.5rem] relative overflow-hidden group shadow-xl shadow-emerald-900/10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+                <div className="col-span-2 bg-emerald-900 text-white p-6 md:p-8 rounded-2xl md:rounded-[2.5rem] relative overflow-hidden group shadow-xl shadow-emerald-900/10">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-800 rounded-full blur-3xl -mr-32 -mt-32 opacity-50 group-hover:bg-emerald-700 transition-colors" />
-                    <div className="relative space-y-4">
-                        <p className="text-xs font-bold text-emerald-300 uppercase tracking-widest">Lifetime Revenue</p>
-                        <h3 className="text-5xl font-bold tracking-tighter">{formatCurrency(stats.totalRev, company?.currency)}</h3>
-                        <div className="flex items-center gap-2 pt-2">
-                            <Database className="w-3.5 h-3.5 text-emerald-400 opacity-60" />
-                            <span className="text-[10px] font-bold text-emerald-100 uppercase tracking-widest">Total of all approved records</span>
+                    <div className="relative space-y-3 md:space-y-4">
+                        <p className="text-[10px] md:text-xs font-bold text-emerald-300 uppercase tracking-widest">Lifetime Revenue</p>
+                        <h3 className="text-2xl md:text-5xl font-bold tracking-tighter">{formatCurrency(stats.totalRev, company?.currency)}</h3>
+                        <div className="flex items-center gap-2 pt-1 md:pt-2">
+                            <Database className="w-3 h-3 md:w-3.5 md:h-3.5 text-emerald-400 opacity-60" />
+                            <span className="text-[9px] md:text-[10px] font-bold text-emerald-100 uppercase tracking-widest truncate">Total of all approved records</span>
                         </div>
                     </div>
                 </div>
@@ -208,13 +208,13 @@ export default function SalesPage() {
 
             {/* FILTERS */}
             <div className="flex flex-col md:flex-row gap-4 items-center">
-                <div className="flex items-center bg-secondary p-1 rounded-xl border border-border w-full md:w-auto shrink-0">
+                <div className="flex items-center bg-secondary p-1 rounded-xl border border-border w-full md:w-auto shrink-0 overflow-x-auto no-scrollbar">
                     {['all', 'pending', 'approved', 'rejected'].map((f) => (
                         <button
                             key={f}
                             onClick={() => setStatusFilter(f as any)}
                             className={cn(
-                                "flex-1 md:flex-none px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all",
+                                "flex-1 md:flex-none px-3 md:px-4 py-2 rounded-lg text-[9px] md:text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap",
                                 statusFilter === f ? "bg-background text-emerald-600 shadow-sm" : "text-muted-foreground hover:text-emerald-600"
                             )}
                         >
@@ -316,21 +316,21 @@ export default function SalesPage() {
 
 function KPICard({ label, value, icon: Icon, alert, trend }: any) {
     return (
-        <div className="bg-card p-6 rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+        <div className="bg-card p-4 md:p-6 rounded-2xl md:rounded-3xl border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
             <div className="absolute -right-4 -top-4 w-24 h-24 bg-emerald-50/30 rounded-full blur-2xl group-hover:bg-emerald-100/30 transition-colors" />
-            <div className="relative space-y-4">
+            <div className="relative space-y-3 md:space-y-4">
                 <div className="flex items-center justify-between">
-                    <div className={cn("w-10 h-10 rounded-2xl flex items-center justify-center shadow-sm", alert ? "bg-destructive/10 text-destructive border border-destructive/20" : "bg-primary/10 text-primary border border-primary/20")}>
-                        <Icon className="w-5 h-5" />
+                    <div className={cn("w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-2xl flex items-center justify-center shadow-sm", alert ? "bg-destructive/10 text-destructive border border-destructive/20" : "bg-primary/10 text-primary border border-primary/20")}>
+                        <Icon className="w-4 h-4 md:w-5 md:h-5" />
                     </div>
-                    {alert && <div className="text-[10px] font-extrabold text-destructive bg-destructive/10 px-2 py-1 rounded-lg animate-pulse">Action Required</div>}
+                    {alert && <div className="text-[9px] md:text-[10px] font-extrabold text-destructive bg-destructive/10 px-2 py-1 rounded-lg animate-pulse whitespace-nowrap">Action Required</div>}
                 </div>
                 <div>
-                    <p className="text-xs font-semibold text-muted-foreground">{label}</p>
-                    <h3 className="text-2xl font-bold tracking-tight text-foreground mt-1">{value}</h3>
+                    <p className="text-[10px] md:text-xs font-semibold text-muted-foreground">{label}</p>
+                    <h3 className="text-lg md:text-2xl font-bold tracking-tight text-foreground mt-0.5 md:mt-1">{value}</h3>
                 </div>
                 {trend && (
-                    <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest underline decoration-emerald-100 underline-offset-4">
+                    <p className="text-[9px] md:text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest underline decoration-emerald-100 underline-offset-4">
                         {trend}
                     </p>
                 )}

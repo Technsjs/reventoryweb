@@ -44,7 +44,7 @@ export default function BillingPage() {
     return (
         <div className="flex flex-col gap-8 md:gap-10 pb-20">
             {/* HEADER */}
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-card border border-border p-4 md:p-6 rounded-2xl md:rounded-[2rem] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-3xl font-bold tracking-tight text-foreground">Subscription</h1>
                     <p className="text-sm font-medium text-muted-foreground flex items-center gap-2 italic">
@@ -52,8 +52,8 @@ export default function BillingPage() {
                         Current Plan: {company?.subscriptionPlan === 'pro' ? 'Professional' : company?.subscriptionPlan === 'standard' ? 'Standard' : 'Starter'}
                     </p>
                 </div>
-                <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-xl border border-emerald-100">
+                <div className="flex items-center gap-3 w-full md:w-auto">
+                    <div className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-50 rounded-xl border border-emerald-100 w-full md:w-auto">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
                         <span className="text-xs font-bold text-emerald-700">Billing Active</span>
                     </div>
@@ -61,31 +61,31 @@ export default function BillingPage() {
             </div>
 
             {/* USAGE GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                 {stats.map(s => (
-                    <div key={s.label} className="bg-card p-8 rounded-[2rem] border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
+                    <div key={s.label} className="bg-card p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-border shadow-sm hover:shadow-md transition-all group overflow-hidden relative">
                         <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
-                            <s.icon className="w-16 h-16" />
+                            <s.icon className="w-12 h-12 md:w-16 md:h-16" />
                         </div>
-                        <div className="relative space-y-6">
+                        <div className="relative space-y-4 md:space-y-6">
                             <div className="flex items-center gap-3">
-                                <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
-                                    <s.icon className="w-5 h-5" />
+                                <div className="p-2 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                    <s.icon className="w-4 h-4 md:w-5 md:h-5" />
                                 </div>
-                                <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">{s.label}</span>
+                                <span className="text-[10px] md:text-xs font-bold text-muted-foreground uppercase tracking-widest">{s.label}</span>
                             </div>
                             <div className="space-y-2">
-                                <h3 className="text-3xl font-bold tracking-tight text-foreground">
+                                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
                                     {s.used} <span className="text-sm font-medium text-muted-foreground">/ {s.limit < 0 ? 'Unlimited' : s.limit}</span>
                                 </h3>
-                                <div className="w-full h-2 bg-secondary rounded-full overflow-hidden">
+                                <div className="w-full h-1.5 md:h-2 bg-secondary rounded-full overflow-hidden">
                                     <motion.div
                                         initial={{ width: 0 }}
                                         animate={{ width: s.limit < 0 ? '100%' : `${Math.min(100, (s.used / s.limit) * 100)}%` }}
                                         className={cn("h-full", s.limit < 0 ? "bg-emerald-500" : (s.used >= s.limit ? "bg-red-500" : "bg-emerald-500"))}
                                     />
                                 </div>
-                                <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-wider">{s.used >= s.limit ? "Limit reached" : "Account remaining healthy"}</p>
+                                <p className="text-[9px] md:text-[10px] font-bold text-muted-foreground/40 uppercase tracking-wider">{s.used >= s.limit ? "Limit reached" : "Account remaining healthy"}</p>
                             </div>
                         </div>
                     </div>
@@ -130,20 +130,20 @@ export default function BillingPage() {
             </div>
 
             {/* TRUST SECTION */}
-            <div className="p-8 bg-emerald-900 text-white rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden group">
+            <div className="p-6 md:p-8 bg-emerald-900 text-white rounded-2xl md:rounded-[3rem] flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-800 rounded-full blur-3xl -mr-32 -mt-32 opacity-50 group-hover:bg-emerald-700 transition-colors" />
-                <div className="flex items-center gap-6 relative z-10 text-center md:text-left">
-                    <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
-                        <Shield className="w-8 h-8 text-emerald-300" />
+                <div className="flex items-center gap-4 md:gap-6 relative z-10 text-center md:text-left flex-col md:flex-row">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-white/10 rounded-xl md:rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/10">
+                        <Shield className="w-6 h-6 md:w-8 md:h-8 text-emerald-300" />
                     </div>
                     <div className="space-y-1">
-                        <h4 className="text-base font-bold">Secure Billing & Security</h4>
-                        <p className="text-xs text-emerald-100/60 font-medium max-w-sm">We use bank-level encryption. Your payment info is never stored on our servers.</p>
+                        <h4 className="text-sm md:text-base font-bold">Secure Billing & Security</h4>
+                        <p className="text-[10px] md:text-xs text-emerald-100/60 font-medium max-w-sm">We use bank-level encryption. Your payment info is never stored on our servers.</p>
                     </div>
                 </div>
                 <div className="text-center md:text-right relative z-10 shrink-0">
-                    <p className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-1 opacity-60">Next Billing Date</p>
-                    <p className="text-sm font-bold uppercase tracking-widest text-white">Monthly Renewal</p>
+                    <p className="text-[9px] md:text-[10px] font-bold text-emerald-400 uppercase tracking-widest mb-1 opacity-60">Next Billing Date</p>
+                    <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-white">Monthly Renewal</p>
                 </div>
             </div>
         </div>
