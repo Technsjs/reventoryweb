@@ -452,6 +452,7 @@ export default function Home() {
                 <li><Link href="/help" className="text-slate-600 hover:text-[#4466B9] transition-colors">Help Center</Link></li>
                 <li><Link href="/guides" className="text-slate-600 hover:text-[#4466B9] transition-colors">Guides</Link></li>
                 <li><Link href="/contact" className="text-slate-600 hover:text-[#4466B9] transition-colors">Contact Us</Link></li>
+                <li><Link href="/feedback" className="text-[#4466B9]">Feedback</Link></li>
               </ul>
             </div>
 
