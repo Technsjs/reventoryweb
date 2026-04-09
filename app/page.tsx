@@ -181,10 +181,10 @@ export default function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5 pt-4">
-              <Link href="/auth/register" className="w-full sm:w-auto px-12 py-6 bg-[#4466B9] text-white rounded-2xl font-black text-xl hover:scale-105 transition-all active:scale-95 shadow-2xl shadow-blue-500/20 flex items-center gap-3 group">
+              {/* <Link href="/auth/register" className="w-full sm:w-auto px-12 py-6 bg-[#4466B9] text-white rounded-2xl font-black text-xl hover:scale-105 transition-all active:scale-95 shadow-2xl shadow-blue-500/20 flex items-center gap-3 group">
                 START NOW
                 <ArrowUpRight strokeWidth={4} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
+              </Link> */}
               <Link href="#download" className="w-full sm:w-auto px-12 py-6 bg-slate-50 text-slate-900 rounded-2xl font-black text-xl hover:bg-slate-100 transition-all active:scale-95 border border-slate-200">
                 GET THE APP
               </Link>
@@ -319,7 +319,7 @@ export default function Home() {
                   <div className="text-7xl font-black italic">Free</div>
                 </div>
                 <div className="flex-1 space-y-6 border-t border-white/10 pt-10">
-                  {['1 Staff Member', '20 Products', 'Daily Reports', 'Standard Sync', 'Email Support'].map(item => (
+                  {['1 Staff Member', '15 Products', 'Daily Reports', 'Standard Sync', 'Email Support'].map(item => (
                     <div key={item} className="flex items-center gap-4 text-[11px] font-black tracking-widest uppercase opacity-70">
                       <CheckCircle2 size={18} className="text-[#4466B9]" /> {item}
                     </div>

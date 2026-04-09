@@ -31,7 +31,7 @@ export default function BillingPage() {
     }, [company]);
 
     const plans = [
-        { id: 'starter', name: 'Starter Plan', price: 0, features: ['1 Staff Member', '20 Product Limit', 'Basic Analytics'], isCurrent: company?.subscriptionPlan === 'starter' },
+        { id: 'starter', name: 'Starter Plan', price: 0, features: ['1 Staff Member', '15', 'Basic Analytics'], isCurrent: company?.subscriptionPlan === 'starter' },
         { id: 'standard', name: 'Standard Plan', price: 2000, features: ['2 Staff Members', '50 Product Limit', 'Export Tools', 'Low Stock Alerts'], isCurrent: company?.subscriptionPlan === 'standard', isPopular: true },
         { id: 'pro', name: 'Pro Plan', price: 5000, features: ['5 Staff Members', 'Unlimited Products', 'Advanced Reports', 'Priority Support'], isCurrent: company?.subscriptionPlan === 'pro' }
     ];
